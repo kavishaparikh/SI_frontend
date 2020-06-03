@@ -1,0 +1,23 @@
+*{margin: 0;padding: 0;}
+.menu{
+    height: 100px;
+    width: 100%;
+    color:black;
+    background:green;
+    text-decoration: none;
+}
+.menu ul{
+    height: 100px;
+    display:flex ;
+    justify-content:space-around;
+    align-items: center;
+    text-decoration: none;
+}
+
+.menu li{
+    list-style: none;
+    text-decoration: none;
+    text-emphasis:" none";
+    color: white;
+}
+
