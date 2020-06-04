@@ -59,17 +59,6 @@ class Csvfile extends Component {
   };
   //:::::::::::::::: End of POST call to save data ::::::::::::::
 
-
-
-  //::::::::::: GET all data form MySQL table ::::::::::
-
-  
-//:::::::::::
-
-  //::::::::::::::::::::::::::::::::::::::::::::::::::
-
-  
-
   render() {
     if (this.state.loading) return <Loader />;
     if (this.state.error) return <CsvError />;
