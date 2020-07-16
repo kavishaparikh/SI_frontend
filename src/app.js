@@ -48,14 +48,19 @@ export default class app extends Component {
         
         
         var valuearray = getdata.map(function(d) {return d.value1});
-        var timestamparray = getdata.map(function(d) {return d.timestamp1});
+        var timestamparray = getdata.map(function(d) {return d.time_stamp});
         
-       
+       var count=timestamparray.length;
+       const arrayval=[];
+       for(let i=1;i<=count;i++)
+       {
+          arrayval.push(i);
+       }
         
         this.setState({
             data:{
              
-                labels:timestamparray,
+                labels:arrayval,
             datasets:[
                 {
                     label:this.props.name,

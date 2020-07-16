@@ -1,10 +1,14 @@
 *{margin: 0;padding: 0;}
+
 .menu{
+    margin: 0;
     height: 100px;
     width: 100%;
     color:black;
-    background:green;
+    background: darkslategray;
     text-decoration: none;
+     position: fixed;  
+     z-index: 10;
 }
 .menu ul{
     height: 100px;

@@ -1,0 +1,92 @@
+
+
+.main1{
+    margin: 0;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    padding:0;
+    background-image: url("nodepic.jpg") ;
+    background-repeat: no-repeat;
+    /* background-position:fixed; */
+    /* background-position: inherit; */
+     background-size:100%; 
+    font-family:sans-serif;
+    background-attachment: fixed;
+    
+}
+.imageblur{
+    height: 100%;
+    width: 100%;
+    
+    filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.nodebox {
+    width:40%;
+    height :auto;
+    background:rgba(245,245,245,0.75);
+    color :black;
+    top:20%;
+    left:30%;
+    position :absolute;
+    transform:translate(-50%,-50);
+    box-sizing:border-box;
+    padding:70px 30px;
+    box-shadow:0 0 20px 3px rgba(163, 142, 142, 1);
+    border-radius:3%;
+    padding-bottom: 5px;
+}
+
+
+h1{
+    margin-bottom: 30px;
+    padding: 0 10 20%;
+    text-align: center;
+    font-size: 30px;
+    margin-top: -30px;
+    
+}
+.nodebox p{
+    margin: -5px;
+    padding: 0;
+    font-size:25px;
+    /*font-weight:bold;*/
+
+}
+.nodebox input{
+    width:98%;
+    margin-bottom:20px;
+
+}
+.nodebox input[type="text"],input[type="date"],input[type="number"],input[type="email"],input[type="password"]{
+    border:none;
+    border-bottom:1.5px solid green;
+    background:transparent;
+    outline:none;
+    height:37px;
+    color:black;
+    font-size: 15px;
+    
+}
+
+
+
+.nodebox input[value="Submit"]{
+    border:none;
+    outline:none;
+    height:40px;
+    background:white;
+    color:black;
+    border-radius:20px;
+    font-weight:bold;
+    font-size: 18px;
+    border: 1.5px solid green;
+}
+.nodebox input[type="button"]:hover{
+    cursor: pointer;
+    background:  green;
+    color:white;
+}
+

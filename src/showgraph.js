@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import App  from './app';
 import DatePick from './Datepick';
+import './showgraph.css'
 export default class 
  extends Component {
     render() {
         return (
-            <div>
+            <div className="showgraph">
                 <center>
                     <br/><br/>
                 <span>From : <DatePick /></span>
