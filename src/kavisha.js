@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-import './csvfile.css'
 
-export default class csvfile extends Component {
+export default class kavisha extends Component {
 
   constructor(props) {
     super(props);
@@ -27,7 +26,6 @@ export default class csvfile extends Component {
     const data = new FormData();
     data.append("file", this.state.selectedFile);
     data.append("name",this.state.name);
-    
     console.log("heyyy");
     axios
       .post("http://localhost:9000/upload", data, {
@@ -44,14 +42,12 @@ export default class csvfile extends Component {
 
   render() {
     return (
-      
-      <div className="wrapper">
-        <center>
-       
-        <div className="container">
-          <div >
+      <div class="container">
+        <br /> <br /> <br /> <br />
+        <div class="row">
+          <div class="col-md-6">
             <form method="post" action="#" id="#">
-              <div >
+              <div class="form-group files">
                 <label>Upload Your File </label>
                 <input
                   type="file"
@@ -61,7 +57,7 @@ export default class csvfile extends Component {
               </div>
               <button
                 type="button"
-                className="button"
+                class="btn btn-success btn-block"
                 onClick={this.onClickHandler}
               >
                 Upload
@@ -69,9 +65,7 @@ export default class csvfile extends Component {
             </form>
           </div>
         </div>
-        </center>
       </div>
-     
     );
   }
 }

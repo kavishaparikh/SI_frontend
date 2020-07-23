@@ -12,9 +12,9 @@ export default function nav() {
             <BrowserRouter>
             <Menu />
             <switch>
-            <Route path="/node_detail" component={Node_detail}/>
+            <Route path="/" exact component={Node_detail}/>
             <Route path="/user_detail" component={User_detail}/>
-            <Route path="/" exact  component={Csvfile}/>
+            <Route path="/csvfile"  component={Csvfile}/>
             <Route path="/showgraph" component={Showgraph}/>
            
             </switch>

@@ -1,41 +1,173 @@
 import React, { Component } from 'react'
 import './node_detail.css'
-
+//import Csvfile from './csvfile'
+//import { Redirect } from "react-router"; 
+import axios from "axios";
 export default class node_detail extends Component {
+    constructor(props)
+    {
+       super(props);
+        
+        this.state = {
+            
+            redirect: false,
+            node_id:"",
+            soil_type:"",
+            crop_type:"",
+            soil_density:"",
+            feeding_date:"",
+            longitude:"",
+            latitude:"",
+            email_id:"",
+            sub:true
+            
+        }
+    }
+    
+    // redirectHandler = (event) => {
+    //     event.preventDefault()
+    //     this.setState({ redirect: true })
+    //     this.renderRedirect();
+    //     // document.getElementById("details").display="none";
+    //     // document.getElementById("csvfile").display="block";
+    // }
+    // renderRedirect = () => {
+    //     // this.setState({ redirect: true })
+    //     if (this.state.redirect) {
+    //         this.setState({ redirect: true })
+    //         console.log("fjskldsajfj");
+    //         // return <Redirect to='./csvfile' />
+    //     //     document.getElementById("details").display="none";
+    //     // document.getElementById("csvfile").display="block";
+    //     }
+        
+    // }
+    onChangeHandler=event=>{
+        console.log(event.target.files[0])
+    
+        this.setState({
+          selectedFile: event.target.files[0],
+          loaded: 0,
+        })
+      }
+      
+      onClickHandler = () => {
+        
+        const data = new FormData();
+        data.append("file", this.state.selectedFile);
+        data.append("name",this.state.node_id);
+        console.log("heyyy");
+        const nodedetail ={node_id:this.state.node_id,
+            soil_type:this.state.soil_type,
+            crop_type:this.state.crop_type,
+            soil_density:this.state.soil_type,
+            feeding_date:this.state.feeding_date,
+            logtitude:this.state.longitude,
+            latitude:this.state.latitude,
+            email_id:this.state.email_id}
+        console.log(nodedetail);
+        axios.post("http://localhost:9000/addnodedetails",{
+        node_id:this.state.node_id,
+        soil_type:this.state.soil_type,
+        crop_type:this.state.crop_type,
+        soil_density:this.state.soil_density,
+        feeding_date:this.state.feeding_date,
+        longitude:this.state.longitude,
+        latitude:this.state.latitude,
+        email_id:this.state.email_id})
+            .then((res) => {
+                // then print response status
+                console.log("details added");
+              });
+        axios
+          .post("http://localhost:9000/upload", data, {
+            headers:{
+              'Content-Type':'multipart/form-data'
+            }
+            // receive two parameter endpoint url ,form data
+          })
+          .then((res) => {
+            // then print response status
+            console.log(res.statusText);
+          });
+      };
+     onChange=(e)=> {
+        var tname=e.target.name;
+        let obj={};
+        obj[tname] = e.target.value
+        console.log(obj);
+        this.setState(obj);
+        
+        if(this.state.node_id==="" || this.state.soil_type===""|| this.state.crop_type===""|| this.state.soil_density===""|| this.state.feeding_date===""|| this.state.latitude===""|| this.state.longitude===""|| this.state.email_id==="")
+        {
+            this.setState({sub:true});
+            console.log(this.state)
+            document.getElementById("sub").disabled=true;
+        }
+        else
+        {
+            this.setState({sub:false});
+            console.log("false")
+            document.getElementById("sub").disabled=false;
+        }
+      }
+      
+     
     render() {
+       
         return (
-            <div>
+            <div id>
+            
             <div className="main1">
             </div>
-            <div className="nodebox">
-                <form>
+            <div className="adjustsize"> </div>
+            <div id="details" className="nodebox">
+            
+                <form autocomplete="off">
                     <h1> Node Details</h1>
                     <p>  Enter Node ID</p>
-                    <input type="text" name="node_id" placeholder="Enter Node ID"  id="node_id"/>
+                    <input onChange={this.onChange }  type="text" name="node_id" placeholder="Enter Node ID"  id="node_id" required/>
                     <p> Enter Soil Type</p>
-                    <input type="text" name="soil_type" placeholder="Enter Soil Type"  id="soil_type"/>
+                    <input onChange={this.onChange} type="text" name="soil_type" placeholder="Enter Soil Type"  id="soil_type" required/>
                     
                     <p> Enter Crop Type</p>
-                    <input type="text" name="crop_type" placeholder="Enter Crop Type"  id="crop_type"/>
+                    <input  onChange={this.onChange} type="text" name="crop_type" placeholder="Enter Crop Type"  id="crop_type" required/>
                     <p>Enter Soil Density</p>
-                    <input type="text" name="soil_density" placeholder="Enter Soil Density"  id="soil_density"/>
+                    <input onChange={this.onChange} type="text" name="soil_density" placeholder="Enter Soil Density"  id="soil_density" required/>
                     <p>Enter Date of Feeding</p>
-                    <input type="date" name="feeding_date" placeholder="Enter Date of Feeding"  id="feeding_date"/>
+                    <input onChange={this.onChange} type="date" name="feeding_date" placeholder="Enter Date of Feeding"  id="feeding_date" required/>
                     <p>Enter Longitude</p>
-                    <input type="text" name="longitude" placeholder="Enter Longitude"  id="longitude"/>
+                    <input onChange={this.onChange} type="text" name="longitude" placeholder="Enter Longitude"  id="longitude" required/>
                     <p>Enter Latitude</p>
-                    <input type="text" name="latitude" placeholder="Enter Latitude"  id="latitude"/>
+                    <input onChange={this.onChange}  type="text" name="latitude" placeholder="Enter Latitude"  id="latitude" required/>
                     <p>Enter User Email ID</p>
-                    <input type="email" name="email_id" placeholder="Enter User Email ID"  id="email_id"/>
+                    <input  onChange={this.onChange}  type="email" name="email_id" placeholder="Enter User Email ID"  id="email_id" required/>
+                    <p>Upload Your File </p>
+                    <input
+                        type="file"
+                        name="file"
+                        onChange={this.onChangeHandler}
+                    required/>
                        <br/> 
-                       <br/>
-                    <input type="button" name="registerbtn" value="Submit"/>
+                       
+                    <center>
+                    <button
+                    type="button" id="sub" disabled={this.state.sub}
+                    onClick={this.onClickHandler}
+                    >
+                Submit
+              </button>
+                          </center>
+                    
+                   
                     </form>
-                    {/* <form action ="loginuser.html">  
-                        <input type="submit" name="loginbtn" value="Login"/>
-                    </form> */}
+                    
             
             </div>
+
+            
+            
+            <br></br>
             </div>            
             
         )
