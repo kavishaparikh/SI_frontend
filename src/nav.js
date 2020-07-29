@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter,Route} from 'react-router-dom'
-import Showgraph from './showgraph'
+import Viewmap from './mapview'
 import Csvfile from './csvfile'
 import  Menu from './menu'
 import Node_detail from './node_detail'
@@ -11,13 +11,13 @@ export default function nav() {
         <div>
             <BrowserRouter>
             <Menu />
-            <switch>
+            
             <Route path="/" exact component={Node_detail}/>
             <Route path="/user_detail" component={User_detail}/>
             <Route path="/csvfile"  component={Csvfile}/>
-            <Route path="/showgraph" component={Showgraph}/>
+            <Route path="/mapview" component={Viewmap}/>
            
-            </switch>
+            
             </BrowserRouter>
            
         </div>

@@ -9,10 +9,11 @@ export default function menu() {
             <ul>
                 <li><Link to='/' style={{color: 'white',textDecoration:'none',padding:50,fontSize:20}} >Add Node</Link></li>
                 <li><Link to='user_detail' style={{color: 'white',textDecoration:'none',padding:50,fontSize:20}} >Add User</Link></li>
-                <li><Link to='csvfile' style={{color: 'white',textDecoration:'none',padding:30,fontSize:20}} >Assign Node</Link></li>
-                <li><Link to='showgraph' style={{color: 'white',textDecoration:'none',padding:50,fontSize:20}} >View Map</Link></li>
+                <li><Link to='csvfile' style={{color: 'white',textDecoration:'none',padding:30,fontSize:20}} >node detail</Link></li>
+                <li><Link to='mapview' style={{color: 'white',textDecoration:'none',padding:50,fontSize:20}} >View Map</Link></li>
                 
             </ul>
         </div>
     )
 }
+ 

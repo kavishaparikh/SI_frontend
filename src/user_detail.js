@@ -39,15 +39,10 @@ export default class user_detail extends Component {
             phone_no:this.state.phone_no,
             })
             .then((res) => {
-                // then print response status
+                
                 console.log("details added");
               });
-            //   name.value="";
-            //   email_id="";
-            //   pass="";
-            //   address="";
-            //   phone_no="";
-            //   this.setState({sub:true});
+            
         
     };
 
