@@ -1,5 +1,3 @@
-
-
 .main1{
     margin: 0;
     position: fixed;
@@ -10,7 +8,7 @@
     background-repeat: no-repeat;
     /* background-position:fixed; */
     /* background-position: inherit; */
-     background-size:100%; 
+    background-size:100%; 
     font-family:sans-serif;
     background-attachment: fixed;
     
@@ -22,12 +20,14 @@
     width:100%;
     top:0px;
 }
+
 .adjustsize1{
     height:120%;
     position: absolute;
     width:100%;
     top:0px;
 }
+
 .nodebox {
     width:40%;
     height :auto;

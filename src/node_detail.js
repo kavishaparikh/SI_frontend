@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './node_detail.css'
-//import Csvfile from './csvfile'
-//import { Redirect } from "react-router"; 
 import axios from "axios";
+import { Redirect } from 'react-router';
+
 export default class node_detail extends Component {
     constructor(props)
     {
@@ -10,7 +10,7 @@ export default class node_detail extends Component {
         
         this.state = {
             
-            redirect: false,
+            redirect: '',
             node_id:"",
             soil_type:"",
             crop_type:"",
@@ -18,7 +18,7 @@ export default class node_detail extends Component {
             feeding_date:"",
             longitude:"",
             latitude:"",
-            email_id:"",
+            email_id:props.location.id,
             sub:true
             
         }
@@ -60,7 +60,7 @@ export default class node_detail extends Component {
         const nodedetail ={node_id:this.state.node_id,
             soil_type:this.state.soil_type,
             crop_type:this.state.crop_type,
-            soil_density:this.state.soil_type,
+            soil_density:this.state.soil_density,
             feeding_date:this.state.feeding_date,
             logtitude:this.state.longitude,
             latitude:this.state.latitude,
@@ -89,32 +89,40 @@ export default class node_detail extends Component {
           .then((res) => {
             // then print response status
             console.log(res.statusText);
+            this.setState({
+              redirect:'/node_list',
+            })
           });
+          
       };
      onChange=(e)=> {
         var tname=e.target.name;
         let obj={};
         obj[tname] = e.target.value
-        console.log(obj);
+        // console.log(obj);
         this.setState(obj);
         
         if(this.state.node_id==="" || this.state.soil_type===""|| this.state.crop_type===""|| this.state.soil_density===""|| this.state.feeding_date===""|| this.state.latitude===""|| this.state.longitude===""|| this.state.email_id==="")
         {
             this.setState({sub:true});
-            console.log(this.state)
+            // console.log(this.state)
             document.getElementById("sub").disabled=true;
         }
         else
         {
             this.setState({sub:false});
-            console.log("false")
+            // console.log("false")
             document.getElementById("sub").disabled=false;
         }
       }
       
      
     render() {
-       
+      
+      if (this.state.redirect) {
+        return <Redirect to={this.state.redirect} />
+      }
+
         return (
             <div id>
             
@@ -122,16 +130,15 @@ export default class node_detail extends Component {
             </div>
             <div className="adjustsize"> </div>
             <div id="details" className="nodebox">
-            
                 <form autocomplete="off">
                     <h1> Node Details</h1>
+                    <p>User ID :- {this.state.email_id}</p>
                     <p>  Enter Node ID</p>
-                    <input onChange={this.onChange }  type="text" name="node_id" placeholder="Enter Node ID"  id="node_id" required/>
+                    <input onChange={ this.onChange }  type="text" name="node_id" placeholder="Enter Node ID"  id="node_id" required/>
                     <p> Enter Soil Type</p>
                     <input onChange={this.onChange} type="text" name="soil_type" placeholder="Enter Soil Type"  id="soil_type" required/>
-                    
                     <p> Enter Crop Type</p>
-                    <input  onChange={this.onChange} type="text" name="crop_type" placeholder="Enter Crop Type"  id="crop_type" required/>
+                    <input onChange={this.onChange} type="text" name="crop_type" placeholder="Enter Crop Type"  id="crop_type" required/>
                     <p>Enter Soil Density</p>
                     <input onChange={this.onChange} type="text" name="soil_density" placeholder="Enter Soil Density"  id="soil_density" required/>
                     <p>Enter Date of Feeding</p>
@@ -140,8 +147,6 @@ export default class node_detail extends Component {
                     <input onChange={this.onChange} type="text" name="longitude" placeholder="Enter Longitude"  id="longitude" required/>
                     <p>Enter Latitude</p>
                     <input onChange={this.onChange}  type="text" name="latitude" placeholder="Enter Latitude"  id="latitude" required/>
-                    <p>Enter User Email ID</p>
-                    <input  onChange={this.onChange}  type="email" name="email_id" placeholder="Enter User Email ID"  id="email_id" required/>
                     <p>Upload Your File </p>
                     <input
                         type="file"
@@ -164,8 +169,6 @@ export default class node_detail extends Component {
                     
             
             </div>
-
-            
             
             <br></br>
             </div>            
