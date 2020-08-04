@@ -1,85 +1,167 @@
-import React, { Component } from 'react'; 
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'; 
- 
-const mapStyles = { 
-  width: '100%', 
-  height: '100%' 
-}; 
- 
-let geocoder; 
-let addressData = [{location: "146 Pierrepont St, Brooklyn, NY, USA"}, {location: "153 Remsen St, Brooklyn, NY, USA"}]; 
- 
-export class MapContainer extends Component { 
-  constructor (props) { 
-    super(props); 
-    this.onMarkerClick = this.onMarkerClick.bind(this); 
-    this.displayMarkers = this.displayMarkers.bind(this); 
-    this.state = { 
-        lat: 47.49855629475769, 
-        lng: -122.14184416996333, 
-        showingInfoWindow: false, 
-        activeMarker: {}, 
-        selectedPlace: {}, 
-        places: [], 
-        stores: [{latitude: 47.49855629475769, longitude: -122.14184416996333}, 
-          {latitude: 47.359423, longitude: -122.021071}, 
-          {latitude: 47.2052192687988, longitude: -121.988426208496}, 
-          {latitude: 47.6307081, longitude: -122.1434325}, 
-          {latitude: 47.3084488, longitude: -122.2140121}, 
-          {latitude: 47.5524695, longitude: -122.0425407}] 
-    } 
-  } 
-  displayMarkers (stores) { 
-    return stores.map((place, index) => { 
-      return <Marker key={index} id={index} position={{ 
-       lat: place.latitude, 
-       lng: place.longitude 
-     }} 
-     onClick={() => console.log("You clicked me!")} /> 
-    }) 
-  } 
- 
-  onMarkerClick (props, marker, e) { 
-    this.setState({ 
-      selectedPlace: props, 
-      activeMarker: marker, 
-      showingInfoWindow: true 
-    }); 
-  }; 
- 
-  render() { 
-    geocoder = new this.props.google.maps.Geocoder(); 
-    return ( 
-      <div className="container place-map"> 
-        <div className="row"> 
-          <div className="col-md-12"> 
-            <Map 
-              google={this.props.google} 
-              zoom={14} 
-              style={mapStyles} 
-              initialCenter={{ 
-                lat: this.state.lat, 
-                lng: this.state.lng 
-              }} 
-               
-            > 
-              {this.displayMarkers(this.state.stores)} 
-              {this.displayMarkers(this.state.places)} 
-              {/* <Marker onClick={this.onMarkerClick} /> */}
-              <InfoWindow 
-                marker={this.state.activeMarker} 
-                visible={this.state.showingInfoWindow} 
-              > 
-                <div>Your Location Here!</div> 
-              </InfoWindow> 
-            </Map> 
-          </div> 
-        </div> 
-      </div> 
-    ); 
-  } 
-} 
- 
-export default GoogleApiWrapper({ 
-  apiKey: 'AIzaSyAUbRHtu3k_fg3jDGk_qAatE5jA4bC_ndE' 
-})(MapContainer);
+import React, { Component } from "react"
+import { compose } from "recompose"
+import axios from "axios";
+import Showgraph from './showgraph'
+
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps"
+
+const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
+
+  return (
+  <div>
+    <br/><br/><br/><br/><br/>
+    <GoogleMap defaultZoom={8} defaultCenter={{ lat: 22.5, lng: 72 }}>
+      {props.markers.map(marker => {
+        const onClick = props.onClick.bind(this, marker)
+        return (
+          <Marker
+            key={marker.id}
+            onMouseUp={onClick}
+            onClick={onClick}
+            position={{ lat: marker.latitude, lng: marker.longitude }}
+          >
+            {props.selectedMarker === marker &&
+              <InfoWindow>
+                <div>
+                  {marker.node_id}
+                </div>
+              </InfoWindow>}
+            
+          </Marker>
+        )
+      })}
+    </GoogleMap></div>
+  )
+})
+
+export default class ShelterMap extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      shelters: [],
+      selectedMarker: false,
+      selectedOption: '',
+        clearable: true,
+        nodeIds: [],
+        details: false,
+        node: '',
+        showgraph1: false
+    }
+  }
+  componentDidMount() {
+    fetch("http://localhost:9000/node_data")
+      .then(r => r.json())
+      .then(data => {
+        this.setState({ shelters: data})
+      })
+  }
+  viewgraph = ()=>{
+    this.setState({showgraph1:true});
+  }
+  handleClick = (selectedOption, event) => {
+    // console.log({ marker })
+    this.setState({ selectedMarker: selectedOption })
+    // console.log(selectedOption.label);
+     axios.get("http://localhost:9000/node_details/"+selectedOption.node_id).then(function (response) {
+      // console.log(response);
+      return response.data;
+   })
+        .then(res => {
+          console.log(res);
+          const nodeval=[];
+          res.map(function(nd){
+            nodeval.node_id=nd.node_id;
+            nodeval.soil_type=nd.soil_type;
+            nodeval.crop_type=nd.crop_type;
+            nodeval.soil_density=nd.soil_density;
+            nodeval.feeding_date=nd.feeding_date;
+            nodeval.longitude=nd.longitude;
+            nodeval.latitude=nd.latitude;
+            nodeval.name=nd.name;
+          })
+            this.setState({
+                node: nodeval
+            })
+            console.log("hello", this.state.node)
+        })
+    this.setState({selectedOption});
+    this.setState({details:true});
+    this.setState({showgraph1:false});
+  }
+  render() {
+    return (
+      <div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <MapWithAMarker
+        selectedMarker={this.state.selectedMarker}
+        markers={this.state.shelters}
+        onClick={this.handleClick}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `400px` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+      {this.state.details?<div>
+        <table>
+          <tbody>
+        <tr>
+          <td>Node-Id </td>     
+          <td>:</td> 
+          <td>{this.state.node.node_id}</td>
+        </tr>
+        <tr>
+          <td>Soil-Type </td>     
+          <td>:</td> 
+          <td>{this.state.node.soil_type}</td>
+        </tr>
+        <tr>
+          <td>Crop-Type </td>     
+          <td>:</td> 
+          <td>{this.state.node.crop_type}</td>
+        </tr>
+        <tr>
+          <td>Soil-Density </td>     
+          <td>:</td> 
+          <td>{this.state.node.soil_density}</td>
+        </tr>
+        <tr>
+          <td>Feeding-Date </td>     
+          <td>:</td> 
+          <td>{this.state.node.feeding_date}</td>
+        </tr>
+        <tr>
+          <td>Longitude </td>     
+          <td>:</td> 
+          <td>{this.state.node.longitude}</td>
+        </tr>
+        <tr>
+          <td>Latitude </td>     
+          <td>:</td> 
+          <td>{this.state.node.latitude}</td>
+        </tr>
+        <tr>
+          <td>User-Name </td>     
+          <td>:</td> 
+          <td>{this.state.node.name}</td>
+        </tr>
+        <tr>
+        <td colSpan="3"><button onClick={this.viewgraph}>Show Graph</button></td>
+        </tr>
+        </tbody>
+        </table>
+        
+        </div>
+        :<div/>}
+        {this.state.showgraph1 ? <div className="gcss"><br/><br/>
+        <Showgraph node_id={this.state.node.node_id}/></div>:<div/>}
+        
+      </div>
+    )
+  }
+}

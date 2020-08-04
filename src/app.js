@@ -5,7 +5,6 @@ import './app.css'
 
 
 export default class app extends Component {
-    
     constructor(props)
     {
         super(props)  

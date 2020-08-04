@@ -66,7 +66,7 @@ class csvfile extends Component {
       return { value: nodeId.longitude, label: nodeId.node_id };
     })
     return (
-      <div className="container">
+      <div className="">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <div className="row">
           <div className="col-md-3"></div>
