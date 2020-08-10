@@ -24,24 +24,7 @@ export default class node_detail extends Component {
         }
     }
     
-    // redirectHandler = (event) => {
-    //     event.preventDefault()
-    //     this.setState({ redirect: true })
-    //     this.renderRedirect();
-    //     // document.getElementById("details").display="none";
-    //     // document.getElementById("csvfile").display="block";
-    // }
-    // renderRedirect = () => {
-    //     // this.setState({ redirect: true })
-    //     if (this.state.redirect) {
-    //         this.setState({ redirect: true })
-    //         console.log("fjskldsajfj");
-    //         // return <Redirect to='./csvfile' />
-    //     //     document.getElementById("details").display="none";
-    //     // document.getElementById("csvfile").display="block";
-    //     }
-        
-    // }
+   
     onChangeHandler=event=>{
         console.log(event.target.files[0])
     
@@ -132,7 +115,9 @@ export default class node_detail extends Component {
             <div id="details" className="nodebox">
                 <form autocomplete="off">
                     <h1> Node Details</h1>
-                    <p>User ID :- {this.state.email_id}</p>
+                    <p>User ID</p> 
+                    <input type="text" disabled value={this.state.email_id}/>
+                   
                     <p>  Enter Node ID</p>
                     <input onChange={ this.onChange }  type="text" name="node_id" placeholder="Enter Node ID"  id="node_id" required/>
                     <p> Enter Soil Type</p>

@@ -3,3 +3,24 @@
   position: relative;
   width: 100%;
 }
+.datepicker1{
+  height:30px;
+
+}
+.date1{
+  left:30%;
+  position: absolute;
+
+  font-weight: bold 
+}
+.date2{
+  right:30%;
+  position: absolute;
+  font-weight: bold 
+  
+}
+.colorfrom{
+  font-weight:bold;
+  font-size: 1.3em;
+  
+}

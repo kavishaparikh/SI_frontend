@@ -3,6 +3,7 @@ import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import Showgraph from './showgraph'
+import './csvfile.css'
 class csvfile extends Component {
   constructor(props) {
     super(props);
@@ -66,9 +67,9 @@ class csvfile extends Component {
       return { value: nodeId.longitude, label: nodeId.node_id };
     })
     return (
-      <div className="">
+      <div className="map">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <div className="row">
+        <div className="row" >
           <div className="col-md-3"></div>
           <div className="col-md-6">
             <Select
@@ -80,12 +81,18 @@ class csvfile extends Component {
             // labelKey='name'
             // valueKey='countryCode'
             options={options} />
+            
           </div>
           <div className="col-md-4"></div>
         </div>
-
+        <br/><br/>
         {this.state.details?<div>
-        <table>
+        <table className="tablebox1">
+        <thead>
+            <tr>
+              <th colSpan="3"><h3><center>Node details of {this.state.node.node_id}</center></h3></th>
+            </tr>
+          </thead>
           <tbody>
         <tr>
           <td>Node-Id </td>     
@@ -128,7 +135,7 @@ class csvfile extends Component {
           <td>{this.state.node.name}</td>
         </tr>
         <tr>
-        <td colSpan="3"><button onClick={this.viewgraph}>Show Graph</button></td>
+        <td colSpan="3"><button id="btnn" onClick={this.viewgraph}>Show Graph</button></td>
         </tr>
         </tbody>
         </table>

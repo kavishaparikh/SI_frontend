@@ -66,6 +66,9 @@ export default class  extends Component {
                 this.setState({
                     end: d1
                 })
+                var k = new Date(this.state.end);
+                k.setDate(k.getDate()-30);
+                this.setState({start: k});
                 this.setState({
 
                     ed1: ed[0]
@@ -80,10 +83,10 @@ export default class  extends Component {
         return (
             <div className="showgraph">
                 <center>
-                    
-                    <br/><br/>
-                <span>From : <DatePick  selected={this.state.start} onChange={this.startdate}/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>To : <DatePick selected={this.state.end} onChange={this.enddate}/></span>
+                <div className="datepicker1">
+                <span className="date1"><span className="colorfrom">From : </span><DatePick  selected={this.state.start} onChange={this.startdate}/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span className="date2"><span className="colorfrom">To :</span> <DatePick selected={this.state.end} onChange={this.enddate}/></span>
+                </div>
                 <br/><br/>
                  <h4>Date should be between <span dangerouslySetInnerHTML={{__html: this.state.sd1}}></span> and <span dangerouslySetInnerHTML={{__html: this.state.ed1}}></span></h4><br/>
                 {this.state.show_graph?<App node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="soilmoisture" topic="Soil moisture" name="Soil moisture" color="rgba(255,153,153,0.2)"/>:<div/>} <br/><br/>

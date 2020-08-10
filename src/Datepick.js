@@ -10,8 +10,7 @@ class Datepick extends Component {
  
   render() {
     return (
-      
-        <DatePicker
+      <DatePicker
           onChange={this.onChange}
           value={this.state.date}
         />

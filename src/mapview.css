@@ -1,6 +1,10 @@
 
-
-.tablebox1
+.map
+{
+    position: absolute;
+    width:100%;
+}
+.tablebox
 {
     width: 90%;
     height :auto;
@@ -17,10 +21,10 @@
     border-radius:15px;
     margin-bottom: 3%;
 }
-.tablebox1 th{
+.tablebox th{
     border-radius: 15px 15px 0 0;
 }
- #btnn
+ #btn
  {
     margin-top: 1%;
     height:35px;
@@ -33,7 +37,7 @@
     font-size: 18px;
     border: 1.5px solid #3f51b5;
  }
- #btnn:hover{
+ #btn:hover{
     cursor: pointer;
     background:  #3f51b5;
     color:white;

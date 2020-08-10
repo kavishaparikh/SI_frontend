@@ -20,7 +20,7 @@ export default function nav() {
             <switch>
             {/* <Route path="/" component={Login}/>
              <Route path="/home" component={Home}/> */}
-             <Route path="/"  exact component={Mapview}/>
+             <Route path="/" exact component={Mapview}/>
             <Route path="/user_detail" component={User_detail}/>
             <Route path="/user_list" component={User_list}/>
             <Route path="/csvfile"  component={Csvfile}/>

@@ -49,7 +49,8 @@ export default class user_list extends Component{
     </tr>
     })
         return(
-            <div className="tableBox">
+      
+            <div class="tableBox">
             <h1>User List</h1>
             <Link to='/user_detail'>
               <button class="large green button">Add User</button>
