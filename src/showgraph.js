@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import App  from './app';
+import ApexChart from './practice'
 import "react-datepicker/dist/react-datepicker.css";
 import './showgraph.css'
 import DatePick from "react-datepicker";
@@ -83,17 +84,16 @@ export default class  extends Component {
         return (
             <div className="showgraph">
                 <center>
-                <div className="datepicker1">
-                <span className="date1"><span className="colorfrom">From : </span><DatePick  selected={this.state.start} onChange={this.startdate}/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span className="date2"><span className="colorfrom">To :</span> <DatePick selected={this.state.end} onChange={this.enddate}/></span>
-                </div>
-                <br/><br/>
-                 <h4>Date should be between <span dangerouslySetInnerHTML={{__html: this.state.sd1}}></span> and <span dangerouslySetInnerHTML={{__html: this.state.ed1}}></span></h4><br/>
-                {this.state.show_graph?<App node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="soilmoisture" topic="Soil moisture" name="Soil moisture" color="rgba(255,153,153,0.2)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<App node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="soiltemperature" topic="Soil temperature"name="Soil temperature" color="rgba(0,0,255,0.75)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<App node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="ambienthumidity"topic="Ambient humidity" name="Ambient humidity" color="rgba(100,100,0,0.75)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<App node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="ambienttemperature"topic="Ambient temperature" name="Ambient temperature" color="rgba(255,0,100,0.75)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<App node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="leafwetness" topic="Leaf wetness" name="Leaf wetness" color="rgba(105,100,100,0.75)"/>:<div/>}  
+                {/* <div className="datepicker1"> */}
+                {/* <span className="date1"><span className="colorfrom">From : </span><DatePick  selected={this.state.start} onChange={this.startdate}/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span className="date2"><span className="colorfrom">To :</span> <DatePick selected={this.state.end} onChange={this.enddate}/></span> */}
+                {/* </div> */}
+                <h2>Data between <span dangerouslySetInnerHTML={{__html: this.state.sd1}}></span> and <span dangerouslySetInnerHTML={{__html: this.state.ed1}}></span></h2><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.ed1} startdate={this.state.sd1} graphname="soilmoisture" topic="Soil moisture" name="Soil moisture" color="rgb(0,100,0)"/>:<div/>} <br/><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="soiltemperature" topic="Soil temperature"name="Soil temperature" color="rgb(0,0,255)"/>:<div/>} <br/><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="ambienthumidity"topic="Ambient humidity" name="Ambient humidity" color="rgb(0,0,100)"/>:<div/>} <br/><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="ambienttemperature"topic="Ambient temperature" name="Ambient temperature" color="rgb(255,0,100)"/>:<div/>} <br/><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="leafwetness" topic="Bettery Level" name="Leaf wetness" color="rgb(100,200,200)"/>:<div/>}  
                 
                 </center>
             </div>
