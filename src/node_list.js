@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import './userlist.css'
 import axios from "axios";
-import { MdFileUpload } from "react-icons/md";
+import { MdFileUpload,MdDelete } from "react-icons/md";
 import Tooltip from '@material-ui/core/Tooltip';    
 import IconButton from '@material-ui/core/IconButton';    
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,6 +13,7 @@ export default class node_list extends Component{
     super();
     this.state = {
        data: [],
+       redirect:''
     }
  }
   
@@ -27,8 +29,27 @@ export default class node_list extends Component{
  })
 }
 
+ deletehandler(id){
+   console.log(id);
+  axios.post("http://localhost:9000/deletenode/"+id)
+            .then((res) => {
+                
+                // console.log("details deleted");
+
+            });
+            
+            this.setState({
+                redirect:'/node_list',
+            })
+          
+ }
  render(){
   //  console.log(this);
+  
+  if (this.state.redirect) {
+    return <Redirect to={this.state.redirect} />
+  }
+  
   const nodes = this.state.data.map(node => {
     return <tr>
       <td>{node.node_id}</td> 
@@ -45,6 +66,11 @@ export default class node_list extends Component{
                 <Link to={{pathname:'/uploadCsv:id',id:node.node_id}}>
                     <MdFileUpload />
                 </Link>
+             </IconButton>    
+        </Tooltip>
+        <Tooltip title="Delete Node">    
+            <IconButton aria-label="deletenode">
+                    <MdDelete />
              </IconButton>    
         </Tooltip>
       </td>

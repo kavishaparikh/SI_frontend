@@ -19,12 +19,13 @@ export default class user_list extends Component{
   var th = this;
   this.serverRequest = axios.get("http://localhost:9000/user_list")
     .then(function (res) {
-      
+      console.log(res);  
       th.setState({
         data: res.data
     });
     // console.log(th.state.data);
  })
+ 
 }
 
  render(){
@@ -38,6 +39,13 @@ export default class user_list extends Component{
       <td>{user.password}</td>
       <td>{user.role}</td>
       <td className="icon-action">
+          <Tooltip title="Update">    
+            <IconButton aria-label="updateUser">
+                <Link to={{pathname:'/updateUser:id',id:user.email_id }}> 
+                    <MdAddLocation />
+                </Link>
+             </IconButton>    
+          </Tooltip>
           <Tooltip title="Add Node">    
             <IconButton aria-label="addNode">
                 <Link to={{pathname:'/addNode:id',id:user.email_id }}> 

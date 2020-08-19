@@ -1,60 +1,111 @@
-.form-dark .font-small {
-    font-size: 0.8rem; }
-  
-  .form-dark [type="radio"] + label,
-  .form-dark [type="checkbox"] + label {
-    font-size: 0.8rem; }
-  
-  .form-dark [type="checkbox"] + label:before {
-    top: 2px;
-    width: 15px;
-    height: 15px; }
-  
-  .form-dark .md-form label {
-    color: #fff; }
-  
-  .form-dark input[type=text]:focus:not([readonly]) {
-    border-bottom: 1px solid #00C851;
-    -webkit-box-shadow: 0 1px 0 0 #00C851;
-    box-shadow: 0 1px 0 0 #00C851; }
-  
-  .form-dark input[type=text]:focus:not([readonly]) + label {
-    color: #fff; }
-  
-  .form-dark input[type=password]:focus:not([readonly]) {
-    border-bottom: 1px solid #00C851;
-    -webkit-box-shadow: 0 1px 0 0 #00C851;
-    box-shadow: 0 1px 0 0 #00C851; }
-  
-  .form-dark input[type=password]:focus:not([readonly]) + label {
-    color: #fff; }
-  
-  .form-dark input[type="checkbox"] + label:before {
-    content: '';
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+body{
+    margin: 0;
+    padding:0;
+    /* background-image:url("loginb.jpg"); */
+    background-position:center;
+    background-size:cover;
+    font-family:sans-serif;
+}
+.loginbox {
+    width:450px;
+    height:auto;
+    background:rgba(0,0,0,0.8);
+    color :white;
+    top:28%;
+    left:33%;
+    position :absolute;
+    transform:translate(-50%,-50);
+    box-sizing:border-box;
+    padding:70px 30px;
+    box-shadow:0 0 20px 3px rgba(0,0,0,1.0);
+    border-radius:3%;
+    
+}
+.user{
+    width:125px;
+    height:125px;
+    border-radius:50%;
+    position :absolute;
+    top:-50px;
+    left:calc(75% - 40%);
+}
+h1{
+    margin: 10;
+    padding: 0 10 20%;
+    text-align: center;
+    font-size: 30px;
+}
+.loginbox p{
+    margin: -5px;
+    padding: 0;
+    font-size:25px;
+    font-weight:bold;
+
+}
+.loginbox input{
+    width:98%;
+    margin-bottom:20px;
+
+}
+.loginbox input[type="text"],input[type="password"]{
+    border:none;
+    border-bottom:1.0px solid  #dc5c04;
+    background:transparent;
+    outline:none;
+    height:37px;
+    color:white;
+    font-size: 15px;
+    
+}
+.loginbox input[value="Login"]{
+    border:none;
+    outline:none;
+    height:40px;
+    background:white;
+    color: #dc5c04;
+    border-radius:20px;
+    font-weight:bold;
+    font-size: 18px;
+}
+.loginbox a{
+    margin:5;
+    padding: 0;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 25px;
+    color:white;
+    font-weight: bold;
+}
+.loginbox a:hover{
+    color:#dc5c04;
+}
+.loginbox input[value="Register"]{
+    border:none;
+    outline:none;
+    height:40px;
+    background:white;
+    color: #dc5c04;
+    border-radius:20px;
+    font-weight:bold;
+    font-size: 18px;
+}
+.loginbox input[type="button"]:hover{
+    cursor: pointer;
+    background:  #dc5c04;
+    color:white;
+}
+.loginbox input[type="submit"]:hover{
+    cursor: pointer;
+    background:  #dc5c04;
+    color:white;
+}
+.eye{
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 17px;
-    height: 17px;
-    z-index: 0;
-    border: 1.5px solid #fff;
-    border-radius: 1px;
-    margin-top: 2px;
-    -webkit-transition: 0.2s;
-    transition: 0.2s; }
-  
-  .form-dark input[type="checkbox"]:checked + label:before {
-    top: -4px;
-    left: -3px;
-    width: 12px;
-    height: 22px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: transparent #00c851 #00c851 transparent;
-    -webkit-transform: rotate(40deg);
-    -ms-transform: rotate(40deg);
-    transform: rotate(40deg);
-    -webkit-backface-visibility: hidden;
-    -webkit-transform-origin: 100% 100%;
-    -ms-transform-origin: 100% 100%;
-    transform-origin: 100% 100%; }
+}
+#enable{
+    display: none;
+}
+.loginbox i{
+    width: 25px;
+}
