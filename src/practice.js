@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactApexChart from 'react-apexcharts'
 import ApexCharts from 'apexcharts'
+import Menu from './menu'
+import { Redirect } from 'react-router';
 export default class ApexChart extends React.Component {
    
     constructor(props) {
@@ -319,9 +321,12 @@ export default class ApexChart extends React.Component {
   
 
     render() {
+      if (!localStorage.getItem("username")) {
+        return <Redirect to = {{pathname:'/login'}}/>
+      }
       return (
         
-
+<div><Menu />
   <div id="chart">
      <h3>{this.props.topic}</h3><br/>
 <div class="toolbar">
@@ -361,7 +366,7 @@ export default class ApexChart extends React.Component {
 <ReactApexChart options={this.state.options} series={this.state.series} type="area" height={350} width={1000} />
 </div>
 </div>
-
+</div>
 
       );
     }

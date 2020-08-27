@@ -13,15 +13,20 @@ import UpdateUser from './updateUser'
 
 
 export default function nav() {
+    var isauthenticate = false;
     return (
         <div>
             <BrowserRouter>
-            <Menu />
+            
+            
+            
             
             <switch>
             {/* <Route path="/" component={Login}/>
              <Route path="/home" component={Home}/> */}
-             <Route path="/" exact component={ShelterMap}/>
+             
+             
+             <Route path="/" exact  component={ShelterMap}/>
             <Route path="/user_detail" component={User_detail}/>
             <Route path="/updateUser:id" exact component={UpdateUser}/>
             <Route path="/user_list" component={User_list}/>
@@ -33,6 +38,7 @@ export default function nav() {
             <Route path="/node_list" component={Node_list}/>
             
             </switch>
+            
             </BrowserRouter>
            
         </div>

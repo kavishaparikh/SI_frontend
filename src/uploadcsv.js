@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import './uploadcsv.css'
 import { Redirect } from 'react-router';
-
+import Menu from './menu'
 export default class uploadcsv extends Component {
     
   constructor(props) {
@@ -52,12 +52,15 @@ export default class uploadcsv extends Component {
   };
 
   render() {
+    if (!localStorage.getItem("username")) {
+      return <Redirect to = {{pathname:'/login'}}/>
+    }
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
     
     return (
-      
+      <div><Menu />
       <div className="wrapper">
         <center>
        
@@ -83,6 +86,7 @@ export default class uploadcsv extends Component {
           </div>
         </div>
         </center>
+      </div>
       </div>
     );
   }

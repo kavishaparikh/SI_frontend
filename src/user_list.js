@@ -6,7 +6,8 @@ import { MdAddLocation } from "react-icons/md";
 import Tooltip from '@material-ui/core/Tooltip';    
 import IconButton from '@material-ui/core/IconButton';    
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Menu from './menu'
+import { Redirect } from 'react-router';
 export default class user_list extends Component{
   constructor() {
     super();
@@ -29,6 +30,9 @@ export default class user_list extends Component{
 }
 
  render(){
+  if (!localStorage.getItem("username")) {
+    return <Redirect to = {{pathname:'/login'}}/>
+  }
     // console.log(this.state.data);
   const users = this.state.data.map(user => {
     return <tr>
@@ -57,7 +61,8 @@ export default class user_list extends Component{
     </tr>
     })
         return(
-      
+
+          <div><Menu />
             <div class="tableBox">
             <h1>User List</h1>
             <Link to='/user_detail'>
@@ -74,7 +79,7 @@ export default class user_list extends Component{
             </tr>
             {users}
           </table>
-        </div>          
+        </div>    </div>      
         )
     }
 }

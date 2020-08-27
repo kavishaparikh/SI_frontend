@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './node_detail.css'
 import axios from "axios";
 import { Redirect } from 'react-router';
-
+// import Menu from 'react-select/src/components/menu';
+import Menu from './menu'
 export default class user_detail extends Component {
 
     constructor(props)
@@ -69,14 +70,16 @@ export default class user_detail extends Component {
       
      
     render() {
-        
+        if (!localStorage.getItem("username")) {
+            return <Redirect to = {{pathname:'/login'}}/>
+          }
         if (this.state.redirect) {
             console.log(this);
             return <Redirect to = {{pathname:'/addNode:id',id:this.state.email_id}}/>
         }
           
         return (
-            <div>
+            <div><Menu/>
             <div className="main1" ></div>
             <div className="adjustsize1"> </div>
             <div d="details"className="nodebox">

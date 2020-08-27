@@ -15,7 +15,7 @@ export default class menu extends Component {
                 <li><Link to='node_list' style={{color: 'black',textDecoration:'none',padding:50,fontSize:25}} ><span className="links">Nodes</span></Link></li>
                 <li><Link to='user_list' style={{color: 'black',textDecoration:'none',padding:50,fontSize:25}} ><span className="links">Users</span></Link></li>
                 <li><Link to='csvfile' style={{color: 'black',textDecoration:'none',padding:50,fontSize:25}} ><span className="links">Select</span></Link></li>
-                
+                <li><Link to='login' style={{color: 'black',textDecoration:'none',padding:50,fontSize:25}} ><span className="links">Logout</span></Link></li>
             </ul>
         </div>
         )

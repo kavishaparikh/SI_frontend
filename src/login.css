@@ -3,22 +3,22 @@ body{
     margin: 0;
     padding:0;
     /* background-image:url("loginb.jpg"); */
-    background-position:center;
-    background-size:cover;
-    font-family:sans-serif;
+    /* background-position:center; */
+    /* background-size:cover; */
+    /* font-family:sans-serif; */
 }
 .loginbox {
     width:450px;
     height:auto;
-    background:rgba(0,0,0,0.8);
-    color :white;
+    background:white;
+    /* color :white; */
     top:28%;
     left:33%;
     position :absolute;
-    transform:translate(-50%,-50);
-    box-sizing:border-box;
+    /* transform:translate(-50%,-50); */
+    /* box-sizing:border-box; */
     padding:70px 30px;
-    box-shadow:0 0 20px 3px rgba(0,0,0,1.0);
+    box-shadow:0 0 20px 3px ;
     border-radius:3%;
     
 }
@@ -50,11 +50,11 @@ h1{
 }
 .loginbox input[type="text"],input[type="password"]{
     border:none;
-    border-bottom:1.0px solid  #dc5c04;
+    border-bottom:1.0px solid  #3f51b5;
     background:transparent;
     outline:none;
     height:37px;
-    color:white;
+    /* color:white; */
     font-size: 15px;
     
 }
@@ -62,8 +62,8 @@ h1{
     border:none;
     outline:none;
     height:40px;
-    background:white;
-    color: #dc5c04;
+    background:#3f51b5;
+    color: white;
     border-radius:20px;
     font-weight:bold;
     font-size: 18px;
@@ -74,23 +74,23 @@ h1{
     text-decoration: none;
     font-size: 20px;
     line-height: 25px;
-    color:white;
+    /* color:white; */
     font-weight: bold;
 }
 .loginbox a:hover{
-    color:#dc5c04;
+    color:#3f51b5;
 }
 .loginbox input[value="Register"]{
     border:none;
     outline:none;
     height:40px;
     background:white;
-    color: #dc5c04;
+    color: #3f51b5;
     border-radius:20px;
     font-weight:bold;
     font-size: 18px;
 }
-.loginbox input[type="button"]:hover{
+/* .loginbox input[type="button"]:hover{
     cursor: pointer;
     background:  #dc5c04;
     color:white;
@@ -99,7 +99,7 @@ h1{
     cursor: pointer;
     background:  #dc5c04;
     color:white;
-}
+} */
 .eye{
     position: absolute;
 }

@@ -3,6 +3,8 @@ import { compose } from "recompose"
 import axios from "axios";
 import Showgraph from './showgraph'
 import './mapview.css'
+import Menu from './menu'
+import { Redirect } from 'react-router';
 import {
   withScriptjs,
   withGoogleMap,
@@ -108,7 +110,11 @@ export default class ShelterMap extends Component {
     this.setState({showgraph1:false});
   }
   render() {
+    if (!localStorage.getItem("username")) {
+      return <Redirect to = {{pathname:'/login'}}/>
+    }
     return (
+      <div><Menu/>
       <div className="map">
         <br/><br/><br/><br/><br/><br/><br/>
         <MapWithAMarker
@@ -181,7 +187,7 @@ export default class ShelterMap extends Component {
         {this.state.showgraph1 ? <div className="gcss"><br/><br/>
         <Showgraph node_id={this.state.node.node_id}/></div>:<div/>}
 
-        
+        </div>
       </div>
     )
   }

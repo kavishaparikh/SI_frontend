@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './node_detail.css'
 import axios from "axios";
 import { Redirect } from 'react-router';
-
+import Menu from './menu'
 export default class node_detail extends Component {
     constructor(props)
     {
@@ -101,12 +101,15 @@ export default class node_detail extends Component {
       
      
     render() {
-      
+      if (!localStorage.getItem("username")) {
+        return <Redirect to = {{pathname:'/login'}}/>
+      }
       if (this.state.redirect) {
         return <Redirect to={this.state.redirect} />
       }
 
         return (
+          <div><Menu />
             <div id>
             
             <div className="main1">
@@ -157,7 +160,7 @@ export default class node_detail extends Component {
             
             <br></br>
             </div>            
-            
+            </div>
         )
     }
 }

@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import Showgraph from './showgraph'
 import './csvfile.css'
+import Menu from './menu'
+import { Redirect } from 'react-router';
 class csvfile extends Component {
   constructor(props) {
     super(props);
@@ -63,10 +65,14 @@ class csvfile extends Component {
     this.setState({showgraph1:false});
    }
   render() {
+    if (!localStorage.getItem("username")) {
+      return <Redirect to = {{pathname:'/login'}}/>
+    }
     let options = this.state.nodeIds.map(function (nodeId) {
       return { value: nodeId.longitude, label: nodeId.node_id };
     })
     return (
+      <div><Menu/>
       <div className="map">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <div className="row" >
@@ -148,7 +154,7 @@ class csvfile extends Component {
 
 
       </div>
-
+</div>
     
     );
   }

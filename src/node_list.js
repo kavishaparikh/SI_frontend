@@ -7,7 +7,7 @@ import { MdFileUpload,MdDelete } from "react-icons/md";
 import Tooltip from '@material-ui/core/Tooltip';    
 import IconButton from '@material-ui/core/IconButton';    
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Menu from './menu'
 export default class node_list extends Component{
   constructor() {
     super();
@@ -45,7 +45,9 @@ export default class node_list extends Component{
  }
  render(){
   //  console.log(this);
-  
+  if (!localStorage.getItem("username")) {
+    return <Redirect to = {{pathname:'/login'}}/>
+  }
   if (this.state.redirect) {
     return <Redirect to={this.state.redirect} />
   }
@@ -77,6 +79,7 @@ export default class node_list extends Component{
     </tr>
     })
         return(
+          <div><Menu />
             <div className="tableBox">
             <h1>Node List</h1>
             <br/>
@@ -94,7 +97,8 @@ export default class node_list extends Component{
             </tr>
             {nodes}
           </table>
-        </div>          
+        </div>  
+        </div>        
         )
     }
 }

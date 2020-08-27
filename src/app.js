@@ -2,8 +2,8 @@ import {Line} from 'react-chartjs-2'
 
 import React, { Component } from 'react'
 import './app.css'
-
-
+import Menu from './menu'
+import { Redirect } from 'react-router';
 export default class app extends Component {
     constructor(props)
     {
@@ -141,7 +141,11 @@ export default class app extends Component {
   }
     }
     render() {
+      if (!localStorage.getItem("username")) {
+        return <Redirect to = {{pathname:'/login'}}/>
+      }
         return (
+          <div><Menu />
             <div className="graph" >
                 
                 
@@ -154,7 +158,7 @@ export default class app extends Component {
                     data={this.state.data}
                 
                 />
-            </div>
+            </div></div>
         )
     }
 }
