@@ -24,7 +24,7 @@ handleSubmit=(e)=>{
     console.log(this.state.password);
     e.preventDefault();
     var th = this;
-    localStorage.setItem("username",this.state.username);
+    
     // this.state.redirect=true;
     this.serverRequest = axios.get("http://localhost:9000/user_list")
     .then(function(res){
@@ -41,6 +41,7 @@ handleSubmit=(e)=>{
         console.log("mail : "+ user.email_id);
         if(user.email_id == this.state.username && user.password == this.state.password)
         {
+            localStorage.setItem("username",this.state.username);
             console.log("Valid");
             this.setState({
                 redirect:'/',
