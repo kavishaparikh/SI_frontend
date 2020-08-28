@@ -25,17 +25,16 @@ export default class node_list extends Component{
       th.setState({
         data: res.data
     });
-    // console.log(th.state.data);
+    
  })
 }
 
  deletehandler(id){
-   console.log(id);
+
   axios.post("http://localhost:9000/deletenode/"+id)
             .then((res) => {
                 
-                // console.log("details deleted");
-
+                
             });
             
             this.setState({
@@ -44,7 +43,6 @@ export default class node_list extends Component{
           
  }
  render(){
-  //  console.log(this);
   if (!localStorage.getItem("username")) {
     return <Redirect to = {{pathname:'/login'}}/>
   }

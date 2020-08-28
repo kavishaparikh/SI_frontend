@@ -11,12 +11,13 @@ export default class uploadcsv extends Component {
       this.state = {
         selectedFile: null,
         name:props.location.id,
-        redirect:''
+        redirect:'',
+        showerror:false
       }
    
   }
   onChangeHandler=event=>{
-    // console.log(event.target.files[0])
+  
 
     this.setState({
       selectedFile: event.target.files[0],
@@ -27,12 +28,12 @@ export default class uploadcsv extends Component {
   
 
   onClickHandler = () => {
-    
+    this.setState({showerror:false})
     const data = new FormData();
     data.append("file", this.state.selectedFile);
     data.append("name",this.state.name);
     
-    // console.log("heyyy");
+    
     axios
       .post("http://localhost:9000/upload", data, {
         headers:{
@@ -42,11 +43,14 @@ export default class uploadcsv extends Component {
       })
       .then((res) => {
         // then print response status
-        // console.log(res.statusText);
+   
         this.setState({
           redirect:'/node_list',
         })
-        // console.log(this);
+       
+      })
+      .catch((err)=>{
+          this.setState({showerror:true})
       });
 
   };
@@ -82,6 +86,7 @@ export default class uploadcsv extends Component {
               >
                 Upload
               </button>
+              {this.state.showerror?<h4 style={{color:"red"}}>Invalid File Selected</h4>:<span></span>}
             </form>
           </div>
         </div>

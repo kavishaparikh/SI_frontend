@@ -13,7 +13,6 @@ export default class ApexChart extends React.Component {
      
       
       
-      // console.log( "Date :  "+start + " "  + end)
       const url="http://localhost:9000/"+this.props.graphname+"/"+this.props.node_id+"/"+this.props.startdate+"/"+this.props.enddate;
       fetch(url)
         .then((response) => {
@@ -25,7 +24,7 @@ export default class ApexChart extends React.Component {
         }
       })
           .then((d) => {
-            // console.log("Hello: "+d);
+           
             var obj = {
               name: this.props.topic,
               data:d
@@ -35,7 +34,7 @@ export default class ApexChart extends React.Component {
           })
           .catch((err) => {
             this.setState({error:true});
-            console.log(err);
+            
     
           });
       this.state = {
@@ -143,7 +142,7 @@ export default class ApexChart extends React.Component {
         }
       })
           .then((d) => {
-            // console.log("Hello: "+d);
+            
             var obj = {
               data:d
             };
@@ -152,7 +151,7 @@ export default class ApexChart extends React.Component {
           })
           .catch((err) => {
             this.setState({error:true});
-            console.log(err);
+            
     
           });
     }
@@ -172,7 +171,7 @@ export default class ApexChart extends React.Component {
         }
       })
           .then((d) => {
-            // console.log("Hello: "+d);
+         
             var obj = {
               data:d
             };
@@ -181,7 +180,7 @@ export default class ApexChart extends React.Component {
           })
           .catch((err) => {
             this.setState({error:true});
-            console.log(err);
+            
     
           });
           
@@ -283,7 +282,7 @@ export default class ApexChart extends React.Component {
           )
           break
         case 'six_months':
-          console.log(this.props.startdate)
+          
           ApexCharts.exec(
             'area-datetime',
             'zoomX',

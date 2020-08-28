@@ -18,6 +18,7 @@ export default class node_detail extends Component {
             feeding_date:"",
             longitude:"",
             latitude:"",
+            showerror:false,
             email_id:props.location.id,
             sub:true
             
@@ -26,8 +27,7 @@ export default class node_detail extends Component {
     
    
     onChangeHandler=event=>{
-        console.log(event.target.files[0])
-    
+           
         this.setState({
           selectedFile: event.target.files[0],
           loaded: 0,
@@ -39,7 +39,7 @@ export default class node_detail extends Component {
         const data = new FormData();
         data.append("file", this.state.selectedFile);
         data.append("name",this.state.node_id);
-        console.log("heyyy");
+      
         const nodedetail ={node_id:this.state.node_id,
             soil_type:this.state.soil_type,
             crop_type:this.state.crop_type,
@@ -48,8 +48,17 @@ export default class node_detail extends Component {
             logtitude:this.state.longitude,
             latitude:this.state.latitude,
             email_id:this.state.email_id}
-        console.log(nodedetail);
-        axios.post("http://localhost:9000/addnodedetails",{
+      
+        
+        axios
+          .post("http://localhost:9000/upload", data, {
+            headers:{
+              'Content-Type':'multipart/form-data'
+            }
+            // receive two parameter endpoint url ,form data
+          })
+          .then((res) => {
+            axios.post("http://localhost:9000/addnodedetails",{
         node_id:this.state.node_id,
         soil_type:this.state.soil_type,
         crop_type:this.state.crop_type,
@@ -60,41 +69,37 @@ export default class node_detail extends Component {
         email_id:this.state.email_id})
             .then((res) => {
                 // then print response status
-                console.log("details added");
+              
               });
-        axios
-          .post("http://localhost:9000/upload", data, {
-            headers:{
-              'Content-Type':'multipart/form-data'
-            }
-            // receive two parameter endpoint url ,form data
-          })
-          .then((res) => {
             // then print response status
-            console.log(res.statusText);
+           
             this.setState({
               redirect:'/node_list',
             })
-          });
+          })
+          .catch(()=>{
+            this.setState({showerror:true})
+          })
+          ;
+
           
       };
      onChange=(e)=> {
         var tname=e.target.name;
         let obj={};
         obj[tname] = e.target.value
-        // console.log(obj);
+       
         this.setState(obj);
         
         if(this.state.node_id==="" || this.state.soil_type===""|| this.state.crop_type===""|| this.state.soil_density===""|| this.state.feeding_date===""|| this.state.latitude===""|| this.state.longitude===""|| this.state.email_id==="")
         {
             this.setState({sub:true});
-            // console.log(this.state)
+            
             document.getElementById("sub").disabled=true;
         }
         else
         {
             this.setState({sub:false});
-            // console.log("false")
             document.getElementById("sub").disabled=false;
         }
       }
@@ -150,6 +155,7 @@ export default class node_detail extends Component {
                     >
                 Submit
               </button>
+                {this.state.showerror?<h4 style={{color:"red"}}>Invalid File Selected</h4>:<span></span>}
                           </center>
                     
                    

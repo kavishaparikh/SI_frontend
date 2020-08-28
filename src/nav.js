@@ -16,16 +16,10 @@ export default function nav() {
     var isauthenticate = false;
     return (
         <div>
-            <BrowserRouter>
-            
-            
-            
-            
+             <BrowserRouter>
             <switch>
             {/* <Route path="/" component={Login}/>
              <Route path="/home" component={Home}/> */}
-             
-             
              <Route path="/" exact  component={ShelterMap}/>
             <Route path="/user_detail" component={User_detail}/>
             <Route path="/updateUser:id" exact component={UpdateUser}/>
@@ -38,8 +32,10 @@ export default function nav() {
             <Route path="/node_list" component={Node_list}/>
             
             </switch>
-            
             </BrowserRouter>
+           
+      
+           
            
         </div>
     )

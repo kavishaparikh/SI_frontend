@@ -23,27 +23,25 @@ class csvfile extends Component {
    }
    componentDidMount() {
     
-    axios.get("http://localhost:9000/node_data").then(function (response) {
+    axios.get("http://localhost:9000/node_data/"+localStorage.getItem("username")+"/"+localStorage.getItem("role")).then(function (response) {
       
       return response.data;
    })
         .then(res => {
-         
             this.setState({
                 nodeIds: res
             })
-            console.log("hello", this.state.nodeIds)
+         
         })
    }
 
    handleChange=(selectedOption) =>{
-     console.log(selectedOption.label);
+     
      axios.get("http://localhost:9000/node_details/"+selectedOption.label).then(function (response) {
-      // console.log(response);
+     
       return response.data;
    })
         .then(res => {
-          console.log(res);
           const nodeval=[];
           res.map(function(nd){
             nodeval.node_id=nd.node_id;
@@ -58,7 +56,7 @@ class csvfile extends Component {
             this.setState({
                 node: nodeval
             })
-            console.log("hello", this.state.node)
+           
         })
     this.setState({selectedOption});
     this.setState({details:true});
@@ -69,7 +67,8 @@ class csvfile extends Component {
       return <Redirect to = {{pathname:'/login'}}/>
     }
     let options = this.state.nodeIds.map(function (nodeId) {
-      return { value: nodeId.longitude, label: nodeId.node_id };
+          return { value: nodeId.longitude, label: nodeId.node_id };
+    
     })
     return (
       <div><Menu/>

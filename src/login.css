@@ -8,16 +8,16 @@ body{
     /* font-family:sans-serif; */
 }
 .loginbox {
-    width:450px;
+    width:30%;
     height:auto;
     background:white;
     /* color :white; */
-    top:28%;
-    left:33%;
+    top:17%;
+    left:35%;
     position :absolute;
     /* transform:translate(-50%,-50); */
     /* box-sizing:border-box; */
-    padding:70px 30px;
+    padding:35px 30px;
     box-shadow:0 0 20px 3px ;
     border-radius:3%;
     
@@ -26,9 +26,6 @@ body{
     width:125px;
     height:125px;
     border-radius:50%;
-    position :absolute;
-    top:-50px;
-    left:calc(75% - 40%);
 }
 h1{
     margin: 10;

@@ -13,8 +13,7 @@ export default class kavisha extends Component {
    
   }
   onChangeHandler=event=>{
-    console.log(event.target.files[0])
-
+   
     this.setState({
       selectedFile: event.target.files[0],
       loaded: 0,
@@ -26,17 +25,17 @@ export default class kavisha extends Component {
     const data = new FormData();
     data.append("file", this.state.selectedFile);
     data.append("name",this.state.name);
-    console.log("heyyy");
+    
     axios
       .post("http://localhost:9000/upload", data, {
         headers:{
           'Content-Type':'multipart/form-data'
         }
-        // receive two parameter endpoint url ,form data
+      
       })
       .then((res) => {
-        // then print response status
-        console.log(res.statusText);
+     
+       
       });
   };
 

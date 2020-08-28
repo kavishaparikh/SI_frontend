@@ -8,6 +8,7 @@ export default class Login extends Component {
         constructor(){
             super();
             localStorage.removeItem("username");
+            localStorage.removeItem("role");
             this.state={
                 data:[],
                 redirect: '',
@@ -17,39 +18,38 @@ export default class Login extends Component {
             };
             this.handleChange=this.handleChange.bind(this);
             this.handleSubmit=this.handleSubmit.bind(this);
-        }
-
-handleSubmit=(e)=>{
-    console.log(this.state.username);
-    console.log(this.state.password);
-    e.preventDefault();
-    var th = this;
-    
-    // this.state.redirect=true;
-    this.serverRequest = axios.get("http://localhost:9000/user_list")
+            var th = this;
+            this.serverRequest = axios.get("http://localhost:9000/user_list")
     .then(function(res){
         th.setState({
             data:res.data
         });
-        // console.log(th);
+        
     })
-    // console.log(this.state.data);
+        }
 
+handleSubmit=(e)=>{
+  
+    e.preventDefault();
+  
+    
+    
     ////////////Comparision for valid email ID////////////////
     this.state.data.map(user =>{
-        // console.log(this.state.username);
-        console.log("mail : "+ user.email_id);
+        
+      
         if(user.email_id == this.state.username && user.password == this.state.password)
         {
             localStorage.setItem("username",this.state.username);
-            console.log("Valid");
+            localStorage.setItem("role",user.role);
+          
             this.setState({
                 redirect:'/',
             })
         }
         else{
-            console.log("Invalid");
-            // alert("Invalid Username or Password..!!!");
+          
+          
             this.setState({
                 errormsg : 'Invalid credentials'
             })
@@ -66,12 +66,12 @@ handleChange(e){
     this.setState({
         [name]:value
     });
-    // console.log(this);
+   
 
 
 }
     render(){
-// console.log(this);
+
 
 
       if (this.state.redirect) {
@@ -81,8 +81,10 @@ return(
 
        <form onSubmit={this.handleSubmit}>
             <div className="loginbox">
-                {/* <img src="user1.jpg" className="user" / > */}
-                <h1> Login Pannel</h1>
+                <center>
+                <img src="logo.png" className="user" ></img>
+                </center>
+                <br/>
                     <p><i className="fa fa-user" aria-hidden="true"></i>   User Email</p>
                     <input type="text" onChange={this.handleChange} name="username" placeholder="Enter Email"  id="username"/>
                     <p> <i className="fa fa-key" ></i>   Password</p>

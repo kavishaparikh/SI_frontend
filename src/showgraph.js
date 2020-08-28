@@ -24,21 +24,21 @@ export default class  extends Component {
      startdate=(e)=>
      {
             this.setState({show_graph:false});
-            console.log("date "+e );
+          
             this.setState({start:e})
             this.setState({show_graph:true});
      }
      enddate=(e)=>
      {
             this.setState({show_graph:false});
-            console.log("date "+e); 
+       
             this.setState({end:e})
             this.setState({show_graph:true});
      }
      componentDidMount()
      {
         axios.get("http://localhost:9000/startdate/"+this.props.node_id).then(function (response) {
-            console.log(response.data[0].date);
+           
             return response.data[0].date;
          })
               .then(res => {
@@ -52,7 +52,7 @@ export default class  extends Component {
                 this.setState({
                     sd1:sd[0]
                 })
-                  console.log("hello1 "+d)
+                  
               })
          
       
@@ -75,7 +75,7 @@ export default class  extends Component {
                     ed1: ed[0]
                 })
                 this.setState({show_graph:true})
-                console.log("hello2 "+d1)
+              
               })
              
         
@@ -90,10 +90,10 @@ export default class  extends Component {
                 {/* </div> */}
                 <h2>Data between <span dangerouslySetInnerHTML={{__html: this.state.sd1}}></span> and <span dangerouslySetInnerHTML={{__html: this.state.ed1}}></span></h2><br/>
                 {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.ed1} startdate={this.state.sd1} graphname="soilmoisture" topic="Soil moisture" name="Soil moisture" color="rgb(0,100,0)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="soiltemperature" topic="Soil temperature"name="Soil temperature" color="rgb(0,0,255)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="ambienthumidity"topic="Ambient humidity" name="Ambient humidity" color="rgb(0,0,100)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="ambienttemperature"topic="Ambient temperature" name="Ambient temperature" color="rgb(255,0,100)"/>:<div/>} <br/><br/>
-                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.end} startdate={this.state.start} graphname="leafwetness" topic="Bettery Level" name="Leaf wetness" color="rgb(100,200,200)"/>:<div/>}  
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.ed1} startdate={this.state.sd1} graphname="soiltemperature" topic="Soil temperature"name="Soil temperature" color="rgb(0,0,255)"/>:<div/>} <br/><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.ed1} startdate={this.state.sd1} graphname="ambienthumidity"topic="Ambient humidity" name="Ambient humidity" color="rgb(0,0,100)"/>:<div/>} <br/><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.ed1} startdate={this.state.sd1} graphname="ambienttemperature"topic="Ambient temperature" name="Ambient temperature" color="rgb(255,0,100)"/>:<div/>} <br/><br/>
+                {this.state.show_graph?<ApexChart node_id={this.props.node_id} enddate={this.state.ed1} startdate={this.state.sd1} graphname="leafwetness" topic="Bettery Level" name="Leaf wetness" color="rgb(100,200,200)"/>:<div/>}  
                 
                 </center>
             </div>

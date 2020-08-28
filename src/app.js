@@ -10,7 +10,7 @@ export default class app extends Component {
         super(props)  
         const name=this.props.graphname; 
         const nodeid=this.props.node_id;
-        console.log("janne"+nodeid)
+       
         const url="http://localhost:9000/"+this.props.graphname+"/"+this.props.node_id+"/"+this.props.startdate+"/"+this.props.enddate;                                                                                                                              
            this.state={
             data:{
@@ -36,11 +36,11 @@ export default class app extends Component {
           .then((data) => {
             this.setState({tabledata:data});
             this.datavalue=data;
-            console.log(data);
+          
           })
           .catch((err) => {
             this.setState({error:true});
-            console.log(err);
+      
     
           });  
         setInterval(()=>
@@ -102,11 +102,11 @@ export default class app extends Component {
           .then((data) => {
             this.setState({tabledata:data});
             this.datavalue=data;
-            console.log(data);
+            
           })
           .catch((err) => {
             this.setState({error:true});
-            console.log(err);
+         
     
           });  
         setInterval(()=>

@@ -20,11 +20,10 @@ export default class user_list extends Component{
   var th = this;
   this.serverRequest = axios.get("http://localhost:9000/user_list")
     .then(function (res) {
-      console.log(res);  
-      th.setState({
+           th.setState({
         data: res.data
     });
-    // console.log(th.state.data);
+   
  })
  
 }
@@ -33,7 +32,6 @@ export default class user_list extends Component{
   if (!localStorage.getItem("username")) {
     return <Redirect to = {{pathname:'/login'}}/>
   }
-    // console.log(this.state.data);
   const users = this.state.data.map(user => {
     return <tr>
 
@@ -70,8 +68,8 @@ export default class user_list extends Component{
             </Link>
             <table>
             <tr>
-              <th>Name</th>
               <th>Email</th>
+              <th>Name</th>
               <th>Contact</th>
               <th>Password</th>
               <th>Role</th>

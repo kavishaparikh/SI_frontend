@@ -28,7 +28,7 @@ export default class user_detail extends Component {
             pass:this.state.pass,
             phone_no:this.state.phone_no,
             }
-        // console.log(userdetail);
+        
         axios.post("http://localhost:9000/adduserdetails",{
             name:this.state.name,
             email_id:this.state.email_id,
@@ -37,7 +37,7 @@ export default class user_detail extends Component {
             })
             .then((res) => {
                 
-                // console.log("details added");
+              
 
             });
             
@@ -51,19 +51,19 @@ export default class user_detail extends Component {
         var tname=e.target.name;
         let obj={};
         obj[tname] = e.target.value
-        // console.log(obj);
+   
         this.setState(obj);
         
         if(this.state.name==="" || this.state.email_id===""|| this.state.pass===""|| this.state.phone_no==="")
         {
             this.setState({sub:true});
-            // console.log(this.state)
+           
             document.getElementById("sub").disabled=true;
         }
         else
         {
             this.setState({sub:false});
-            // console.log("false")
+            
             document.getElementById("sub").disabled=false;
         }
       }
@@ -74,7 +74,7 @@ export default class user_detail extends Component {
             return <Redirect to = {{pathname:'/login'}}/>
           }
         if (this.state.redirect) {
-            console.log(this);
+      
             return <Redirect to = {{pathname:'/addNode:id',id:this.state.email_id}}/>
         }
           

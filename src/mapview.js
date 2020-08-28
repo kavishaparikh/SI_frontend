@@ -70,7 +70,7 @@ export default class ShelterMap extends Component {
 		});
   }
   componentDidMount() {
-    fetch("http://localhost:9000/node_data")
+    fetch("http://localhost:9000/node_data/"+localStorage.getItem("username")+"/"+localStorage.getItem("role"))
       .then(r => r.json())
       .then(data => {
         this.setState({ shelters: data})
@@ -80,11 +80,11 @@ export default class ShelterMap extends Component {
     this.setState({showgraph1:true});
   }
   handleClick = (selectedOption, event) => {
-    // console.log({ marker })
+    
     this.setState({ selectedMarker: selectedOption })
-    // console.log(selectedOption.label);
+   
      axios.get("http://localhost:9000/node_details/"+selectedOption.node_id).then(function (response) {
-      // console.log(response);
+      
       return response.data;
    })
         .then(res => {
