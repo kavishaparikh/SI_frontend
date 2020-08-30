@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './node_detail.css'
 import axios from "axios";
 import { Redirect } from 'react-router';
-// import Menu from 'react-select/src/components/menu';
 import Menu from './menu'
 export default class user_detail extends Component {
 

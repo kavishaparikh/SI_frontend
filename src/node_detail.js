@@ -49,7 +49,7 @@ export default class node_detail extends Component {
             latitude:this.state.latitude,
             email_id:this.state.email_id}
       
-        
+        var th=this;
         axios
           .post("http://localhost:9000/upload", data, {
             headers:{

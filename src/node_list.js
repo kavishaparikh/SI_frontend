@@ -13,10 +13,25 @@ export default class node_list extends Component{
     super();
     this.state = {
        data: [],
-       redirect:''
+       redirect:'',
+       delete:""
     }
+    
+    
  }
-  
+ deletehandler=(e)=>{
+   var th=this;
+  console.log("kavii "+e);
+    var a= axios.delete("http://localhost:9000/deletenode/"+e)
+    
+    .then(function (){
+      var a='/';
+      th.setState({
+        redirect:a
+    }); 
+            });
+              
+   }
  componentDidMount() {
   var th = this;
   this.serverRequest = axios.get("http://localhost:9000/node_list")
@@ -29,19 +44,7 @@ export default class node_list extends Component{
  })
 }
 
- deletehandler(id){
-
-  axios.post("http://localhost:9000/deletenode/"+id)
-            .then((res) => {
-                
-                
-            });
-            
-            this.setState({
-                redirect:'/node_list',
-            })
-          
- }
+ 
  render(){
   if (!localStorage.getItem("username")) {
     return <Redirect to = {{pathname:'/login'}}/>
@@ -69,8 +72,9 @@ export default class node_list extends Component{
              </IconButton>    
         </Tooltip>
         <Tooltip title="Delete Node">    
-            <IconButton aria-label="deletenode">
-                    <MdDelete />
+            <IconButton  aria-label="deletenode">
+              {/* {console.log(node.node_id)} */}
+                    <a onClick={()=>this.deletehandler(node.node_id) }><MdDelete /></a>
              </IconButton>    
         </Tooltip>
       </td>
