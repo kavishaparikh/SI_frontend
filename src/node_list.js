@@ -11,11 +11,15 @@ import Menu from './menu'
 export default class node_list extends Component{
   constructor() {
     super();
+    
     this.state = {
        data: [],
        redirect:'',
+       redirect1: false,
        delete:""
+       
     }
+   
     
     
  }
@@ -25,12 +29,11 @@ export default class node_list extends Component{
     var a= axios.delete("http://localhost:9000/deletenode/"+e)
     
     .then(function (){
-      var a='/';
-      th.setState({
-        redirect:a
-    }); 
+      window.location.reload(false);
+      
+    
             });
-              
+            
    }
  componentDidMount() {
   var th = this;
@@ -40,6 +43,12 @@ export default class node_list extends Component{
       th.setState({
         data: res.data
     });
+     if (localStorage.getItem("pr"))
+    {
+      localStorage.removeItem("pr");
+      window.location.reload(false)
+
+    }
     
  })
 }
@@ -49,7 +58,7 @@ export default class node_list extends Component{
   if (!localStorage.getItem("username")) {
     return <Redirect to = {{pathname:'/login'}}/>
   }
-  if (this.state.redirect) {
+  if (this.state.redirect1) {
     return <Redirect to={this.state.redirect} />
   }
   

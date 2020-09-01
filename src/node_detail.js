@@ -10,7 +10,8 @@ export default class node_detail extends Component {
         
         this.state = {
             
-            redirect: '',
+            redirect: '/node_list',
+            redirect1: false,
             node_id:"",
             soil_type:"",
             crop_type:"",
@@ -69,13 +70,15 @@ export default class node_detail extends Component {
         email_id:this.state.email_id})
             .then((res) => {
                 // then print response status
-              
+                this.setState({
+                  redirect:'/node_list',
+                })
+                
               });
             // then print response status
-           
-            this.setState({
-              redirect:'/node_list',
-            })
+            this.setState({redirect1:true})
+            localStorage.setItem("pr",1);
+            
           })
           .catch(()=>{
             this.setState({showerror:true})
@@ -109,7 +112,7 @@ export default class node_detail extends Component {
       if (!localStorage.getItem("username")) {
         return <Redirect to = {{pathname:'/login'}}/>
       }
-      if (this.state.redirect) {
+      if (this.state.redirect1) {
         return <Redirect to={this.state.redirect} />
       }
 
