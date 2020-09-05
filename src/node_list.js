@@ -53,7 +53,6 @@ export default class node_list extends Component{
  })
 }
 
- 
  render(){
   if (!localStorage.getItem("username")) {
     return <Redirect to = {{pathname:'/login'}}/>

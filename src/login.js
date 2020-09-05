@@ -18,21 +18,25 @@ export default class Login extends Component {
             };
             this.handleChange=this.handleChange.bind(this);
             this.handleSubmit=this.handleSubmit.bind(this);
-            var th = this;
-            this.serverRequest = axios.get("http://localhost:9000/user_list")
-    .then(function(res){
-        th.setState({
-            data:res.data
-        });
-        
-    })
+            
         }
+
+        componentDidMount() {
+            var th = this;
+            this.serverRequest = axios.get("http://localhost:9000/allUser")
+              .then(function (res) {
+                     th.setState({
+                  data: res.data
+                });
+            })
+        }
+
 
 handleSubmit=(e)=>{
   
     e.preventDefault();
   
-    
+    console.log("Hello");
     
     ////////////Comparision for valid email ID////////////////
     this.state.data.map(user =>{
@@ -66,8 +70,9 @@ handleChange(e){
     this.setState({
         [name]:value
     });
-   
-
+    
+console.log("hello...!!");
+    console.log(this.state);
 
 }
     render(){
